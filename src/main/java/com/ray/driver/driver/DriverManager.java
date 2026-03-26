@@ -12,7 +12,7 @@ public class DriverManager {
 
     private DriverManager(){}
 
-    public static WebDriver getDriverThread(){
+    public static WebDriver getDriverForCurrentThread(){
         return driverThread.get();
     }
 
