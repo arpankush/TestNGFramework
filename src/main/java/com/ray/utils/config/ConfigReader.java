@@ -1,4 +1,4 @@
-package com.ray.driver.config;
+package com.ray.utils.config;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
