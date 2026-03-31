@@ -4,12 +4,17 @@ import com.ray.base.BaseTest;
 import com.ray.pages.LoginPage;
 import com.ray.utils.config.ConfigReader;
 import com.ray.utils.driver.DriverManager;
+import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+@Epic("Authentication")
+@Feature("Login Page")
 public class LoginTest extends BaseTest {
 
-    @Test
+    @Test(description = "Valid password shows no error")
+    @Story("User can log in with valid credentials")
+    @Severity(SeverityLevel.CRITICAL)
     public void TestValidLogin() {
         LoginPage loginPage = new LoginPage();
         loginPage.open(ConfigReader.getProperty("url"));
@@ -19,6 +24,8 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(description = "Invalid password shows error")
+    @Story("User sees error on wrong password")
+    @Severity(SeverityLevel.NORMAL)
     public void testInvalidPassword() {
         LoginPage loginPage = new LoginPage()
                 .open(ConfigReader.getProperty("url"));
