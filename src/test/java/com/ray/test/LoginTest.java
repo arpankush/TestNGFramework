@@ -18,7 +18,7 @@ public class LoginTest extends BaseTest {
     public void TestValidLogin() {
         LoginPage loginPage = new LoginPage();
         loginPage.open(ConfigReader.getProperty("url"));
-        loginPage.enterUsername("student").enterPassword("Password123").clickLogin();
+        loginPage.enterUsername("student").enterPassword("Password123@").clickLogin();
 
         Assert.assertEquals(DriverManager.getDriverForCurrentThread().getCurrentUrl(), "https://practicetestautomation.com/logged-in-successfully/");
     }

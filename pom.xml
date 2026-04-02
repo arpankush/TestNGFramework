@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+<!--        Versions-->
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
         <selenium.version>4.18.1</selenium.version>
@@ -17,6 +18,8 @@
         <aspectj.version>1.9.21</aspectj.version>
         <surefire.version>3.2.5</surefire.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+<!--        Paths-->
+        <allure.results.directory>allure-results</allure.results.directory>
     </properties>
 
     <dependencies>
@@ -61,6 +64,10 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                        -Dallure.results.directory="${project.build.directory}/${allure.results.directory}"
+                    </argLine>
                 </configuration>
                 <dependencies>
                     <dependency>
@@ -69,6 +76,15 @@
                         <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>io.qameta.allure</groupId>
+                <artifactId>allure-maven</artifactId>
+                <version>2.14.0</version>
+                <configuration>
+                    <reportVersion>${allure.version}</reportVersion>
+                    <resultsDirectory>${project.build.directory}/${allure.results.directory}</resultsDirectory>
+                </configuration>
             </plugin>
         </plugins>
     </build>
