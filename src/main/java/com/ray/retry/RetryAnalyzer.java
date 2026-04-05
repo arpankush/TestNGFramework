@@ -1,6 +1,6 @@
 package com.ray.retry;
 
-import com.ray.utils.config.ConfigReader;
+import com.ray.utils.readers.ConfigReader;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 

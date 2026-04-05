@@ -17,6 +17,7 @@
         <allure.version>2.27.0</allure.version>
         <aspectj.version>1.9.21</aspectj.version>
         <surefire.version>3.2.5</surefire.version>
+        <saucelabs.version>2.1.25</saucelabs.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 <!--        Paths-->
         <allure.results.directory>allure-results</allure.results.directory>
@@ -52,6 +53,13 @@
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
         </dependency>
+<!--        SauceLabs-->
+        <dependency>
+            <groupId>com.saucelabs</groupId>
+            <artifactId>sauce_java_common</artifactId>
+            <version>${saucelabs.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -88,5 +96,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>

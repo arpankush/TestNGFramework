@@ -1,4 +1,4 @@
-package com.ray.utils.config;
+package com.ray.utils.readers;
 
 import java.io.FileInputStream;
 import java.io.InputStream;

@@ -2,8 +2,8 @@ package com.ray.test;
 
 import com.ray.base.BaseTest;
 import com.ray.pages.LoginPage;
-import com.ray.utils.config.ConfigReader;
-import com.ray.utils.driver.DriverManager;
+import com.ray.utils.readers.ConfigReader;
+import com.ray.utils.managers.DriverManager;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -15,12 +15,11 @@ public class LoginTest extends BaseTest {
     @Test(description = "Valid password shows no error")
     @Story("User can log in with valid credentials")
     @Severity(SeverityLevel.CRITICAL)
-    public void TestValidLogin() {
+    public void testValidLogin() {
         LoginPage loginPage = new LoginPage();
         loginPage.open(ConfigReader.getProperty("url"));
         loginPage.enterUsername("student").enterPassword("Password123@").clickLogin();
-
-        Assert.assertEquals(DriverManager.getDriverForCurrentThread().getCurrentUrl(), "https://practicetestautomation.com/logged-in-successfully/");
+        Assert.assertEquals(DriverManager.getDriver().getCurrentUrl(), "https://practicetestautomation.com/logged-in-successfully/");
     }
 
     @Test(description = "Invalid password shows error")
