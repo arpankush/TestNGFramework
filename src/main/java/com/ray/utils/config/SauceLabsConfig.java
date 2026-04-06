@@ -1,6 +1,11 @@
 package com.ray.utils.config;
 
 import org.openqa.selenium.MutableCapabilities;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class SauceLabsConfig {
     private SauceLabsConfig() {}
@@ -14,40 +19,38 @@ public class SauceLabsConfig {
     }
 
     public static String getRegionUrl() {
-        return "https://ondemand.eu-central-1.saucelabs.com/wd/hub";
+        return "https://ondemand.eu-central-1.saucelabs.com:443/wd/hub";
     }
 
     public static MutableCapabilities buildCapabilities(String browser) {
-        MutableCapabilities caps = new MutableCapabilities();
+        Map<String, Object> sauceOptions = new HashMap<>();
+        sauceOptions.put("username", getUsername());
+        sauceOptions.put("accessKey", getAccessKey());
+        sauceOptions.put("build", getBuildName());
+        sauceOptions.put("name", Thread.currentThread().getName());
 
-        switch (browser.toLowerCase()) {
+        return switch (browser.toLowerCase()) {
             case "firefox" -> {
-                caps.setCapability("browserName", "firefox");
-                caps.setCapability("browserVersion", "latest");
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                firefoxOptions.setPlatformName("Windows 11");
+                firefoxOptions.setBrowserVersion("latest");
+                firefoxOptions.setCapability("sauce:options", sauceOptions);
+                yield firefoxOptions;
             }
             default -> {
-                caps.setCapability("browserName", "chrome");
-                caps.setCapability("browserVersion", "latest");
+                ChromeOptions chromeOptions = new ChromeOptions();
+                chromeOptions.setPlatformName("Windows 11");
+                chromeOptions.setBrowserVersion("latest");
+                chromeOptions.setCapability("sauce:options", sauceOptions);
+                yield chromeOptions;
             }
-        }
-
-        caps.setCapability("platformName", "Windows 11");
-
-        MutableCapabilities sauceOptions = new MutableCapabilities();
-        sauceOptions.setCapability("username", getUsername());
-        sauceOptions.setCapability("accessKey", getAccessKey());
-        sauceOptions.setCapability("build", getBuildName());
-        sauceOptions.setCapability("name", Thread.currentThread().getName());
-        sauceOptions.setCapability("tunnelName", "");
-
-        caps.setCapability("sauce:options", sauceOptions);
-        return caps;
+        };
     }
 
     private static String getBuildName() {
         String ci = System.getenv("GITHUB_RUN_NUMBER");
         return ci != null
                 ? "GitHub Actions #" + ci
-                : "Local Run — " + java.time.LocalDateTime.now();
+                : "selenium-build-R2NA2";
     }
 }
