@@ -28,6 +28,7 @@ public class SauceLabsConfig {
         sauceOptions.put("accessKey", getAccessKey());
         sauceOptions.put("build", getBuildName());
         sauceOptions.put("name", Thread.currentThread().getName());
+        sauceOptions.put("idleTimeout", 300);
 
         return switch (browser.toLowerCase()) {
             case "firefox" -> {
