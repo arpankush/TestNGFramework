@@ -1,27 +1,36 @@
 package com.ray.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
-public class LoginPage extends BasePage{
+import java.util.List;
 
-    private final By usernameField = By.id("username");
-    private final By passwordField = By.id("password");
-    private final By loginButton   = By.id("submit");
-    private final By errorMessage  = By.id("error");
+public class LoginPage extends BasePage {
 
-        public LoginPage open(String url){
-            driver.get(url);
-            return this;
-        }
+    @FindBy(id = "username")
+    private WebElement usernameField;
+    @FindBy(id = "password")
+    private WebElement passwordField;
+    @FindBy(id = "submit")
+    private WebElement loginButton;
+    @FindBy(id = "error")
+    private WebElement errorMessage;
+    @FindBy(id = "error")
+    private List<WebElement> errorMessages;
+
+    public LoginPage open(String url) {
+        driver.get(url);
+        return this;
+    }
 
     public LoginPage enterUsername(String username) {
-        type(usernameField, username);
+        typeText(usernameField, username);
         return this;
     }
 
     public LoginPage enterPassword(String password) {
-        type(passwordField, password);
+        typeText(passwordField, password);
         return this;
     }
 
@@ -34,7 +43,7 @@ public class LoginPage extends BasePage{
     }
 
     public boolean isErrorDisplayed() {
-        return !driver.findElements(errorMessage).isEmpty();
+        return !errorMessages.isEmpty();
     }
 
 }
