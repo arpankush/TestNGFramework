@@ -1,6 +1,5 @@
 package com.ray.base;
 
-import com.ray.utils.config.SauceLabsConfig;
 import com.ray.utils.readers.ConfigReader;
 import com.ray.utils.managers.DriverManager;
 import io.qameta.allure.Attachment;
@@ -18,8 +17,8 @@ public class BaseTest {
 
     @BeforeMethod
     public void setup(){
-        DriverManager.setDriverThread(ConfigReader.getProperty("browser"));
-        DriverManager.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(ConfigReader.getProperty("implicit.wait"))));
+        DriverManager.setDriverThread(ConfigReader.get("browser"));
+        DriverManager.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(ConfigReader.get("implicit.wait"))));
     }
 
     @AfterMethod

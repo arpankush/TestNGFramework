@@ -17,7 +17,7 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
     public void testValidLogin() {
         LoginPage loginPage = new LoginPage();
-        loginPage.open(ConfigReader.getProperty("url"));
+        loginPage.open(ConfigReader.get("url"));
         loginPage.enterUsername("student").enterPassword("Password123").clickLogin();
 
         Assert.assertEquals(DriverManager.getDriver().getCurrentUrl(), "https://practicetestautomation.com/logged-in-successfully/");
@@ -28,7 +28,7 @@ public class LoginTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void testInvalidPassword() {
         LoginPage loginPage = new LoginPage()
-                .open(ConfigReader.getProperty("url"));
+                .open(ConfigReader.get("url"));
         loginPage.enterUsername("student")
                 .enterPassword("wrongpass")
                 .clickLogin();

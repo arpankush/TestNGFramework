@@ -8,7 +8,7 @@ public class RetryAnalyzer implements IRetryAnalyzer {
 
     private int attempt = 0;
     private static final int MAX_RETRY = Integer.parseInt(
-            ConfigReader.getProperty("retry.count")
+            ConfigReader.get("retry.count")
     );
 
     @Override

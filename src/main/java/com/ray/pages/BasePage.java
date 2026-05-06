@@ -18,7 +18,7 @@ public class BasePage {
 
     public BasePage(){
         this.driver = DriverManager.getDriver();
-        this.webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(ConfigReader.getProperty("implicit.wait"))));
+        this.webDriverWait = new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(ConfigReader.get("implicit.wait"))));
         PageFactory.initElements(driver, this);
     }
     protected WebElement waitForVisible(By locator){

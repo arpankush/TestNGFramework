@@ -17,8 +17,14 @@ public class ConfigReader {
             }
         }
 
-    public static String getProperty(String key){
+    public static String get(String key){
         return PROPS.getProperty(key);
+    }
+
+    public static String getBrowser() {
+        // System property from -Dbrowser=chrome overrides config.properties
+        String sysProp = System.getProperty("browser");
+        return sysProp != null ? sysProp : get("browser");
     }
 
 }
