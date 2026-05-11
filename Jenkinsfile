@@ -89,16 +89,11 @@ pipeline {
     post {
         always {
             allure([
-                includeProperties: false,
-                jdk: '',
-                results: [[path: "${ALLURE_RESULTS}"]]
+                includeProperties : false,
+                jdk               : '',
+                commandline       : 'AllureCLI',
+                results           : [[path: 'target/allure-results']]
             ])
-        }
-        success {
-            echo "Pipeline passed — Allure report published"
-        }
-        failure {
-            echo "Pipeline failed — check Allure report for details"
         }
     }
 }
