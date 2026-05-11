@@ -39,6 +39,13 @@ pipeline {
 
     stages {
 
+        stage('Debug ENV') {
+            steps {
+                bat 'echo JAVA_HOME=%JAVA_HOME%'
+                bat 'java -version'
+            }
+        }
+
         stage('Checkout') {
             steps {
                 git branch: 'main',
