@@ -35,8 +35,6 @@ pipeline {
 
     environment {
         ALLURE_RESULTS = 'target/allure-results'
-        JAVA_HOME = "C:\\Users\\arpan\\.jdks\\ms-21.0.10"
-        PATH      = "${JAVA_HOME}\\bin;${env.PATH}"
     }
 
     stages {
