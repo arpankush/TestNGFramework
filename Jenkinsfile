@@ -44,6 +44,7 @@ pipeline {
         stage('Debug ENV') {
             steps {
                 bat 'echo JAVA_HOME=%JAVA_HOME%'
+                bat 'set PATH'
                 bat 'java -version'
             }
         }
