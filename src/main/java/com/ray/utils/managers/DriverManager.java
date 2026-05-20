@@ -50,15 +50,15 @@ public class DriverManager {
             default -> {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--start-maximized");
-                if (headless) {
-                    chromeOptions.addArguments(
-                            "--headless=new",
-                            "--no-sandbox",
-                            "--disable-dev-shm-usage",
-                            "--disable-gpu",
-                            "--window-size=1920,1080"
-                    );
-                }
+//                if (headless) {
+//                    chromeOptions.addArguments(
+//                            "--headless=new",
+//                            "--no-sandbox",
+//                            "--disable-dev-shm-usage",
+//                            "--disable-gpu",
+//                            "--window-size=1920,1080"
+//                    );
+//                }
                 yield new ChromeDriver(chromeOptions);
             }
         };
