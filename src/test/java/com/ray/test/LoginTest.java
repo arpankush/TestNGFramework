@@ -23,6 +23,17 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(DriverManager.getDriver().getCurrentUrl(), "https://practicetestautomation.com/logged-in-successfully/");
     }
 
+    @Test(description = "Invalid password to failed test case")
+    @Story("User cannot log in with invalid credentials")
+    @Severity(SeverityLevel.CRITICAL)
+    public void testInvalidLoginToFailTest() {
+        LoginPage loginPage = new LoginPage();
+        loginPage.open(ConfigReader.get("url"));
+        loginPage.enterUsername("student").enterPassword("Password123QQQQ").clickLogin();
+
+        Assert.assertEquals(DriverManager.getDriver().getCurrentUrl(), "https://practicetestautomation.com/logged-in-successfully/");
+    }
+
     @Test(description = "Invalid password shows error")
     @Story("User sees error on wrong password")
     @Severity(SeverityLevel.NORMAL)
