@@ -76,6 +76,8 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                         -Dallure.results.directory="${project.build.directory}/${allure.results.directory}"
                     </argLine>
+                    <threadCount>${thread.count}</threadCount>
+                    <parallel>methods</parallel>
                 </configuration>
                 <dependencies>
                     <dependency>

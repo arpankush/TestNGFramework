@@ -28,7 +28,7 @@ pipeline {
         )
         string(
             name: 'THREAD_COUNT',
-            defaultValue: 2,
+            defaultValue: '2',
             description: 'Parallel thread count'
         )
     }
